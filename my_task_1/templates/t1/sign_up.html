@@ -1,0 +1,17 @@
+{% extends 'common.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+{% endif %}
+    <form action="{% url 'signup' %}" method="POST" novalidate>        
+        {% csrf_token %}
+        {{form | crispy}}
+        <button type="submit">Sign Up</button>
+    </form>
+{% endblock body %}
+    

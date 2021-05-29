@@ -1,0 +1,43 @@
+{% extends 'common.html' %}
+
+
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+{% endif %}
+
+{% for page in page_obj %}
+    <p>Task Title : {{page.task_title}}</p>
+    <p>Task Description : {{page.task_descrition}}</p>
+    
+    <p>Task Image : </p> 
+    
+    
+    {% if page.task_pic != ""  %}
+    <img style="height:20%; width:20%" src="{{page.task_pic.url}}" alt="Task Pic">
+    {% else %}
+    Photo is not Available
+    {% endif %}
+        
+    <br>
+    <hr>
+    <br>
+{% endfor %}
+<br>
+
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+
+    {% endif %}
+
+{% if page_obj.has_next %}
+
+    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+{% endif %}
+
+
+    
+{% endblock body %}
+    
